@@ -1,0 +1,157 @@
+{%- style -%}
+  #Section-{{ section.id }} .hero-mobile-wrapper {
+    width: 100%;
+    background-color: #ffffff; /* Main background */
+    display: flex;
+    flex-direction: column;
+    font-family: 'Jost', sans-serif;
+  }
+
+  /* 1. TOP TEXT AREA  */
+  #Section-{{ section.id }} .hero-mobile-text-top {
+    padding: 60px 24px 40px 24px; /*Spacious top padding */
+    text-align: left;
+  }
+
+  #Section-{{ section.id }} .hero-mobile-title {
+    font-size: 48px; /* heading size */
+    font-weight: 500;
+    line-height: 1.1;
+    color: #000000;
+    margin: 0 0 20px 0;
+    text-transform: none;
+  }
+
+  #Section-{{ section.id }} .hero-mobile-para {
+    font-size: 18px; /* para size */
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000000;
+    margin: 0;
+    max-width: 90%;
+  }
+
+  /* 2. HERO BG IMAGE LAYOUT */
+  #Section-{{ section.id }} .hero-mobile-image-container {
+    position: relative;
+    width: 100%;
+    line-height: 0;
+    overflow: hidden;
+  }
+
+  #Section-{{ section.id }} .hero-mobile-main-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* 3. BUTTON PLACE & TEXT  */
+  #Section-{{ section.id }} .hero-mobile-btn-overlay {
+    position: absolute;
+    bottom: 40px; /* Bottom placement */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+/* --- BUTTON STYLE UPDATES --- */
+  #Section-{{ section.id }} .hero-mobile-btn {
+    display: flex;             
+    align-items: center;
+    justify-content: center;
+    gap: 12px;                 
+    
+    /* Normal State: Black Background, White Text */
+    background-color: #000000; 
+    color: #ffffff;            
+    
+    padding: 20px 60px;        
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 0px; 
+    white-space: nowrap;
+    min-width: 250px;          
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+  }
+
+  /* Hover & Click State: Yellow Background, Black Text */
+  #Section-{{ section.id }} .hero-mobile-btn:hover,
+  #Section-{{ section.id }} .hero-mobile-btn:active {
+    background-color: #FFEB3B; /* Yellow */
+    color: #000000;            /* Black text */
+  }
+
+  /* The Arrow Icon Styling */
+  #Section-{{ section.id }} .hero-mobile-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;      /* Automatically switches from white to black on hover */
+    stroke-width: 2;
+    transition: transform 0.3s ease;
+  }
+  /* 4. BOTTOM BAR & TEXT */
+  #Section-{{ section.id }} .hero-mobile-bar {
+    background-color: #F5F5F5; /* Pic 7: Light gray bar */
+    padding: 20px 15px;
+    text-align: center;
+  }
+
+  #Section-{{ section.id }} .hero-mobile-bar-text {
+    font-size: 12px; /* Pic 8: Small, clean bar text */
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: #000000;
+    margin: 0;
+    text-transform: uppercase;
+  }
+{%- endstyle -%}
+
+<div class="hero-mobile-wrapper">
+  
+  <div class="hero-mobile-text-top">
+    {%- comment -%} Check and show MOBILE ID {%- endcomment -%}
+    {% if section.settings.hero_title_mobile != blank %}
+      <h2 class="hero-mobile-title">{{ section.settings.hero_title_mobile }}</h2>
+    {% endif %}
+
+    {%- comment -%} Pull from the Subtitle setting instead of hardcoding {%- endcomment -%}
+    {% if section.settings.hero_subtitle_mobile != blank %}
+       <p class="hero-mobile-para">{{ section.settings.hero_subtitle_mobile }}</p>
+    {% endif %}
+  </div>
+
+  <div class="hero-mobile-image-container">
+    {% if section.settings.hero_bg_image_mobile != blank %}
+      <img src="{{ section.settings.hero_bg_image_mobile | image_url: width: 800 }}" class="hero-mobile-main-img" alt="Hero Mobile Image">
+    {% else %}
+      <img src="{{ section.settings.hero_bg_image | image_url: width: 800 }}" class="hero-mobile-main-img" alt="Hero Default Image">
+    {% endif %}
+
+   <div class="hero-mobile-btn-overlay">
+      {%- comment -%} Check and show MOBILE ID {%- endcomment -%}
+      {% if section.settings.hero_btn_text_mobile != blank %}
+        <a href="{{ section.settings.hero_btn_link_mobile | default: section.settings.hero_btn_link }}" class="hero-mobile-btn">
+          {{ section.settings.hero_btn_text_mobile }}
+          
+          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px; margin-left: 10px;">
+            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="hero-mobile-bar">
+    <p class="hero-mobile-bar-text">
+      {{ section.settings.footer_text | default: "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL" }}
+    </p>
+  </div>
+</div>

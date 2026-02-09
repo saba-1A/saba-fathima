@@ -1,0 +1,243 @@
+{%- style -%}
+  @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap');
+
+  /* This stays here to ensure EVERY version we add is centered */
+  #Section-{{ section.id }} .custom-navbar-wrapper {
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  #Section-{{ section.id }} .custom-banner {
+    width: 100%; 
+    font-family: 'Jost', sans-serif;
+    color: #000000;
+  }
+
+  /* Here Desktop V1 centered without affecting V2 */
+  #Section-{{ section.id }} .custom-banner__desktop-only {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  /* Hiding the Desktop Navbar on screens smaller than 768px */
+  @media screen and (max-width: 768px) {
+    #Section-{{ section.id }} .custom-banner__desktop-only {
+      display: none;
+    }
+  }
+
+  /* Hiding Mobile version on anything larger than a phone */
+  @media screen and (min-width: 769px) {
+    #Section-{{ section.id }} .custom-banner__mobile-only {
+      display: none !important;
+    }
+  }
+
+/* Hiding the 4K version on standard screens */
+  @media screen and (max-width: 2560px) {
+    #Section-{{ section.id }} .custom-banner__4k-only {
+      display: none;
+    }
+  }
+
+  /* Hiding the standard desktop version on 4K screens */
+  @media screen and (min-width: 2561px) {
+    #Section-{{ section.id }} .custom-banner__desktop-only {
+      display: none;
+    }
+  }
+  
+{%- endstyle -%}
+
+
+<div class="custom-navbar-wrapper">
+  <div class="custom-banner" id="Section-{{ section.id }}">
+    
+<div class="custom-banner__desktop-only">
+      {% render 'navbar-v1', section: section %}
+      {% render 'hero-v1-full', section: section %}
+    </div>
+
+<div class="custom-banner__mobile-only">
+      {% render 'navbar-mobile', section: section %}
+      {%- comment -%} This calls your new mobile hero file {%- endcomment -%}
+      {% render 'hero-mobile', section: section %}
+    </div>
+
+<div class="custom-banner__4k-only">
+      {% render 'navbar-v2', section: section %}
+      {% render 'hero-bg-4k', section: section %}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Gift Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "1. Layout Colors"
+    },
+    {
+      "type": "color",
+      "id": "top_bar_bg",
+      "label": "Top Bar Background",
+      "default": "#F5F5F5"
+    },
+    {
+      "type": "header",
+      "content": "2. Desktop Hero (The Gift Guide)"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_bg_image",
+      "label": "Hero Top Image (1440x390)"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_bg_image_2",
+      "label": "Hero Right Image (890x402)"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtitle",
+      "label": "Hero Subtitle",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+    },
+    {
+      "type": "text",
+      "id": "hero_btn_text",
+      "label": "Hero Button Text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "hero_btn_link",
+      "label": "Hero Button Link"
+    },
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer Sustainability Text",
+      "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+    },
+    
+    {
+      "type": "header",
+      "content": "3. Navbar & 4K Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_bg_image_4k",
+      "label": "Hero Top Image (4K Ultra-Wide)"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_bg_image_4k_right",
+      "label": "Hero Right Image (4K Split Image)"
+    },
+    {
+      "type": "color",
+      "id": "hero_bg_4k_secondary",
+      "label": "4K Secondary Background Color",
+      "default": "#F5F5F5"
+    },
+    {
+  "type": "text",
+  "id": "hero_title_4k",
+  "label": "4K Hero Title",
+  "default": "The Gift Guide"
+},
+{
+  "type": "textarea",
+  "id": "hero_subtitle_4k",
+  "label": "4K Hero Subtitle",
+  "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection..."
+},
+{
+  "type": "text",
+  "id": "hero_btn_text_4k",
+  "label": "4K Hero Button Text",
+  "default": "SHOP NOW"
+},
+    {
+      "type": "text",
+      "id": "brand_text",
+      "label": "Brand Name",
+      "default": "TISSO VISON"
+    },
+    {
+      "type": "text",
+      "id": "top_center_text",
+      "label": "Navbar Center Text",
+      "default": "Find the ideal gift for your loved ones."
+    },
+    {
+      "type": "text",
+      "id": "top_btn_text",
+      "label": "Navbar Button Text",
+      "default": "CHOOSE GIFT"
+    },
+    {
+      "type": "color",
+      "id": "top_btn_color",
+      "label": "Navbar Button Color",
+      "default": "#FFEB3B"
+    },
+    {
+      "type": "url",
+      "id": "top_btn_link",
+      "label": "Navbar Button Link"
+    },
+
+{
+      "type": "header",
+      "content": "4. Mobile Hero Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_bg_image_mobile",
+      "label": "Mobile Hero Background"
+    },
+    {
+      "type": "text",
+      "id": "hero_title_mobile",
+      "label": "Mobile Hero Title",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtitle_mobile",
+      "label": "Mobile Hero Subtitle",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination."
+    },
+    {
+      "type": "text",
+      "id": "hero_btn_text_mobile",
+      "label": "Mobile Button Text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "hero_btn_link_mobile",
+      "label": "Mobile Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Gift Banner"
+    }
+  ]
+}
+{% endschema %}

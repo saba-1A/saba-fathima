@@ -1,0 +1,28 @@
+My Development Process & File Structure
+
+Project File Structure
+
+Core Controller File
+
+sections/custom-banner.liquid
+
+Navigation (Navbar) Versions
+
+snippets/navbar-v1.liquid (PC Version 1)
+
+snippets/navbar-v2.liquid (PC Version 2)
+
+snippets/navbar-mobile.liquid (Mobile Version)
+
+Hero Banner Versions
+
+snippets/hero-v1-full.liquid (PC Version 1)
+
+snippets/hero-bg-4k.liquid (PC Version 2 / Ultra-Wide)
+
+snippets/hero-mobile.liquid (Mobile Version)
+
+Development Strategy
+I separated the primary UI components into these modular versions to maintain a clean and scalable codebase. This prevents "code bloat" and ensures that the Custom Banner remains a clean controller file.
+
+Initially, I thought about putting all the Navbar code into one single file. However, after seeing how the theme structure uses separate files for different parts, I decided to do the same. By following this professional style, I can keep my code organized, much cleaner, and easier to edit for each specific version.

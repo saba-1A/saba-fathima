@@ -1,0 +1,144 @@
+{%- style -%}
+  /* --- 4K PC 2 WRAPPER --- */
+  #Section-{{ section.id }} .hero-bg-4k-wrapper {
+    width: 100%;
+    max-width: 3840px;
+    margin: 0 auto;
+    background-color: #ffffff;
+  }
+
+  /* TOP BG */
+  #Section-{{ section.id }} .hero-bg-4k-top {
+    width: 100%;
+    height: 1040px; 
+    overflow: hidden;
+  }
+  #Section-{{ section.id }} .hero-bg-4k-top img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* BOTTOM SPLIT SECTION */
+  #Section-{{ section.id }} .hero-bg-4k-split {
+    display: flex;
+    width: 100%;
+    height: 1072px; 
+    align-items: stretch;
+    justify-content: flex-end; 
+  }
+
+  /* LEFT TEXT AREA */
+  #Section-{{ section.id }} .hero-bg-4k-left-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffff;
+  }
+
+  /* RIGHT IMAGE AREA */
+  #Section-{{ section.id }} .hero-bg-4k-right-image {
+    width: 2373px; 
+    height: 100%;
+    overflow: hidden;
+    background-color: {{ section.settings.hero_bg_4k_secondary | default: '#F5F5F5' }};
+  }
+
+  #Section-{{ section.id }} .hero-bg-4k-right-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* TEXT CONTAINER & TYPOGRAPHY*/
+  #Section-{{ section.id }} .hero-4k-text-container {
+    width: 1137px;      
+    margin-left: 376px; 
+    text-align: left;
+  }
+
+  #Section-{{ section.id }} .hero-4k-title {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 164.78px; 
+    line-height: 1.0;
+    color: #000000;
+    margin: 0;
+    text-transform: none;
+  }
+
+  #Section-{{ section.id }} .hero-4k-subtitle {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 47.08px; 
+    line-height: 1.4;
+    color: #000000;
+    margin-top: 50px;
+    margin-bottom: 80px;
+    letter-spacing: 0px;
+  }
+
+  #Section-{{ section.id }} .hero-4k-btn {
+    display: inline-block;
+    padding: 30px 80px;
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    letter-spacing: 0.1em;
+    transition: background-color 0.3s ease;
+  }
+
+  #Section-{{ section.id }} .hero-4k-btn:hover {
+    background-color: #333333;
+  }
+{%- endstyle -%}
+<div class="hero-bg-4k-wrapper">
+  <div class="hero-bg-4k-top">
+    {% if section.settings.hero_bg_image_4k != blank %}
+      <img src="{{ section.settings.hero_bg_image_4k | image_url: width: 3840 }}" alt="4K Top Banner">
+    {% else %}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+  </div>
+
+  <div class="hero-bg-4k-split">
+    <div class="hero-bg-4k-left-content">
+      <div class="hero-4k-text-container">
+        
+        {%- comment -%} 4K PC version 2 Title {%- endcomment -%}
+        {% if section.settings.hero_title_4k != blank %}
+          <h2 class="hero-4k-title">{{ section.settings.hero_title_4k }}</h2>
+        {% endif %}
+        
+        {%- comment -%} 4K PC version 2 Subtitle {%- endcomment -%}
+        {% if section.settings.hero_subtitle_4k != blank %}
+          <p class="hero-4k-subtitle">{{ section.settings.hero_subtitle_4k }}</p>
+        {% endif %}
+
+        {%- comment -%} 4K PC version 2 Button Text {%- endcomment -%}
+        {% if section.settings.hero_btn_text_4k != blank %}
+          <a href="{{ section.settings.hero_btn_link }}" class="hero-4k-btn">
+            {{ section.settings.hero_btn_text_4k }} &rarr;
+          </a>
+        {% endif %}
+        
+      </div>
+    </div>
+       
+    <div class="hero-bg-4k-right-image">
+      {% if section.settings.hero_bg_image_4k_right != blank %}
+        <img src="{{ section.settings.hero_bg_image_4k_right | image_url: width: 2400 }}" alt="4K Right Split Image">
+      {% else %}
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
