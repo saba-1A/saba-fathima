@@ -1,0 +1,72 @@
+<section id="Section-{{ section.id }}" class="custom-v1-wrapper">
+  {% if section.settings.heading != blank %}
+    <div class="v1-title-container">
+      <h2 class="v1-title">{{ section.settings.heading }}</h2>
+    </div>
+  {% endif %}
+
+  <div class="desktop-only">
+    {% render 'product-grid-v1', section: section %}
+  </div>
+
+  <div class="v2-only">
+    {% render 'product-grid-v2', section: section %}
+  </div>
+
+  <div class="mobile-only">
+    {% render 'product-grid-mobile', section: section %}
+  </div>
+</section>
+
+<style>
+  /* 1. RESET & GLOBAL */
+  .custom-v1-wrapper { padding: 80px 0; background: #fff; }
+  .v1-title { font-family: 'Lustria', serif; font-weight: 400; line-height: 1.2; margin: 0; }
+  .v1-title-container { width: 100%; margin: 0 auto 40px auto; padding: 0 20px; box-sizing: border-box; }
+  
+  /* HIDE EVERYTHING BY DEFAULT */
+  .v2-only, .desktop-only, .mobile-only { display: none !important; }
+
+  /* 2. MOBILE (Phones) */
+  @media (max-width: 768px) {
+    .mobile-only { display: block !important; }
+    .custom-v1-wrapper { padding: 40px 0; }
+    .v1-title-container { max-width: 342px; }
+    .v1-title { font-size: 24px; max-width: 248px; text-align: left; }
+  }
+
+  /* 3. STANDARD DESKTOP (Laptops/Monitors) */
+  @media (min-width: 769px) and (max-width: 1999px) {
+    .desktop-only { display: block !important; }
+    .v1-title-container { max-width: 1339px; }
+    .v1-title { font-size: 36px; max-width: 372px; text-align: left; }
+  }
+
+  /* 4. ULTRA-WIDE 4K (V2 Layout) */
+  @media (min-width: 2000px) {
+    .v2-only { display: block !important; }
+    .v1-title-container { max-width: 2844.3px; } 
+    .v1-title { font-size: 48px; max-width: 500px; text-align: left; } 
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Custom Product V1",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Tisso vison in the wild"
+    },
+    { "type": "image_picker", "id": "img_1", "label": "Image 1" },
+    { "type": "image_picker", "id": "img_2", "label": "Image 2" },
+    { "type": "image_picker", "id": "img_3", "label": "Image 3" },
+    { "type": "image_picker", "id": "img_4", "label": "Image 4" },
+    { "type": "image_picker", "id": "img_5", "label": "Image 5" },
+    { "type": "image_picker", "id": "img_6", "label": "Image 6" }
+  ],
+  "presets": [ { "name": "Custom Product V1" } ]
+}
+{% endschema %}

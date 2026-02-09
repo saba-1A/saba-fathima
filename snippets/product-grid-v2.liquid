@@ -1,0 +1,54 @@
+<div class="v2-desktop-grid">
+  {% for i in (1..6) %}
+    {% capture img_id %}img_{{ i }}{% endcapture %}
+    <div class="v2-grid-item">
+      {% if section.settings[img_id] != blank %}
+        <img src="{{ section.settings[img_id] | image_url: width: 2000 }}" alt="Product {{ i }}">
+        <div class="v2-hotspot">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/>
+            <path d="M12 8V16M8 12H16" stroke="white" stroke-width="2"/>
+          </svg>
+        </div>
+      {% else %}
+        {{ 'image' | placeholder_svg_tag }}
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
+<style>
+  .v2-desktop-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    width: 100%;
+    max-width: 2844.3px; 
+    margin: 0 auto;
+    gap: 30px; /* Adjusted gap for larger scale */
+  }
+
+  .v2-grid-item {
+    position: relative;
+    width: 919.78px;   
+    height: 943.14px;  
+    overflow: hidden;
+  }
+
+  .v2-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .v2-hotspot {
+    position: absolute;
+    top: 20%; 
+    right: 20%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .v2-hotspot:hover {
+    transform: scale(1.2);
+  }
+</style>
