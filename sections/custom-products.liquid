@@ -5,23 +5,29 @@
     </div>
   {% endif %}
 
+  <!-- DESKTOP -->
   <div class="desktop-only">
     {% render 'product-grid-v1', section: section %}
   </div>
 
+  <!-- ULTRA WIDE -->
   <div class="v2-only">
     {% render 'product-grid-v2', section: section %}
   </div>
 
+  <!-- MOBILE -->
   <div class="mobile-only">
     {% render 'product-grid-mobile', section: section %}
   </div>
 </section>
 
+<!-- Include the Unified Popup -->
+{% render 'product-popup-modal' %}
+
 <style>
   /* 1. RESET & GLOBAL */
   .custom-v1-wrapper { padding: 80px 0; background: #fff; }
-  .v1-title { font-family: 'Lustria', serif; font-weight: 400; line-height: 1.2; margin: 0; }
+  .v1-title { font-family: 'Lustria', serif; font-weight: 400; line-height: 1.2; margin: 0; color: #000; }
   .v1-title-container { width: 100%; margin: 0 auto 40px auto; padding: 0 20px; box-sizing: border-box; }
   
   /* HIDE EVERYTHING BY DEFAULT */
@@ -54,18 +60,37 @@
 {
   "name": "Custom Product V1",
   "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Tisso vison in the wild"
-    },
-    { "type": "image_picker", "id": "img_1", "label": "Image 1" },
-    { "type": "image_picker", "id": "img_2", "label": "Image 2" },
-    { "type": "image_picker", "id": "img_3", "label": "Image 3" },
-    { "type": "image_picker", "id": "img_4", "label": "Image 4" },
-    { "type": "image_picker", "id": "img_5", "label": "Image 5" },
-    { "type": "image_picker", "id": "img_6", "label": "Image 6" }
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Tisso vision in the wild" },
+    
+    { "type": "header", "content": "Product 1" },
+    { "type": "product", "id": "prod_1", "label": "Product Selection" },
+    { "type": "image_picker", "id": "mob_img_1", "label": "Mobile Image (Optional)" },
+    { "type": "image_picker", "id": "wide_img_1", "label": "4K/Ultra-Wide Image" },
+
+    { "type": "header", "content": "Product 2" },
+    { "type": "product", "id": "prod_2", "label": "Product Selection" },
+    { "type": "image_picker", "id": "mob_img_2", "label": "Mobile Image (Optional)" },
+    { "type": "image_picker", "id": "wide_img_2", "label": "4K/Ultra-Wide Image" },
+
+    { "type": "header", "content": "Product 3" },
+    { "type": "product", "id": "prod_3", "label": "Product Selection" },
+    { "type": "image_picker", "id": "mob_img_3", "label": "Mobile Image (Optional)" },
+    { "type": "image_picker", "id": "wide_img_3", "label": "4K/Ultra-Wide Image" },
+
+    { "type": "header", "content": "Product 4" },
+    { "type": "product", "id": "prod_4", "label": "Product Selection" },
+    { "type": "image_picker", "id": "mob_img_4", "label": "Mobile Image (Optional)" },
+    { "type": "image_picker", "id": "wide_img_4", "label": "4K/Ultra-Wide Image" },
+
+    { "type": "header", "content": "Product 5" },
+    { "type": "product", "id": "prod_5", "label": "Product Selection" },
+    { "type": "image_picker", "id": "mob_img_5", "label": "Mobile Image (Optional)" },
+    { "type": "image_picker", "id": "wide_img_5", "label": "4K/Ultra-Wide Image" },
+
+    { "type": "header", "content": "Product 6" },
+    { "type": "product", "id": "prod_6", "label": "Product Selection" },
+    { "type": "image_picker", "id": "mob_img_6", "label": "Mobile Image (Optional)" },
+    { "type": "image_picker", "id": "wide_img_6", "label": "4K/Ultra-Wide Image" }
   ],
   "presets": [ { "name": "Custom Product V1" } ]
 }

@@ -1,12 +1,20 @@
 <div class="v1-grid">
   {% for i in (1..6) %}
-    {% capture img_id %}img_{{ i }}{% endcapture %}
+    {% capture prod_id %}prod_{{ i }}{% endcapture %}
+    {% assign product = all_products[section.settings[prod_id]] %}
+    
     <div class="v1-item">
-      {% if section.settings[img_id] != blank %}
-        <img src="{{ section.settings[img_id] | image_url: width: 1000 }}" alt="Product {{ i }}">
-        <div class="v1-plus">+</div>
+      {% if product != blank %}
+        <img src="{{ product.featured_image | image_url: width: 1000 }}" alt="{{ product.title }}">
+        
+        <!-- Button to trigger popup -->
+        <button class="v1-plus-btn js-open-popup" 
+                data-product-handle="{{ product.handle }}"
+                data-product-json="{{ product | json | escape }}">
+          <span>+</span>
+        </button>
       {% else %}
-        {{ 'image' | placeholder_svg_tag }}
+        {{ 'product-1' | placeholder_svg_tag }}
       {% endif %}
     </div>
   {% endfor %}
@@ -16,31 +24,54 @@
   .v1-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
-    width: 1339px;  
+    width: 100%;
+    max-width: 1339px;  
     margin: 0 auto;
     gap: 20px;
   }
   .v1-item {
     position: relative;
-    width: 433px;   
-    height: 444px; 
+    width: 100%;   
+    /* Aspect ratio based on Figma 433/444 */
+    aspect-ratio: 433 / 444; 
     border: 1.5px solid #000; 
     overflow: hidden;
   }
-  .v1-item img { width: 100%; height: 100%; object-fit: cover; }
-  .v1-plus {
+  .v1-item img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    display: block;
+  }
+  
+  .v1-plus-btn {
     position: absolute;
     top: 20px;
     right: 20px;
-    background: #fff;
     width: 32px;
     height: 32px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1.5px solid #000;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 2;
+    padding: 0;
+    transition: transform 0.2s;
+  }
+  
+  .v1-plus-btn span {
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 400;
+    color: #000;
+    margin-top: -2px; /* Visual centering */
+  }
+
+  .v1-plus-btn:hover {
+    transform: scale(1.1);
   }
 </style>
