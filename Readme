@@ -34,3 +34,29 @@ Summary
 Even though I was new to Shopify, I learned a lot during this process. It was a fun challenge and definitely worth my time—thank you for giving me the opportunity to try this out!
 
 Regarding the timeline, I noticed both 3 and 7 days mentioned in the instructions. To be safe and ensure I met all requirements promptly, I decided to stick to the 3-day deadline. I'm really happy with the progress I made in that window
+
+Quick List :
+
+1.Core Controller File
+
+sections/custom-banner.liquid
+
+Navigation (Navbar) Versions
+
+snippets/navbar-v1.liquid (PC Version 1)
+snippets/navbar-v2.liquid (PC Version 2)
+snippets/navbar-mobile.liquid (Mobile Version)
+
+Hero Banner Versions
+
+snippets/hero-v1-full.liquid (PC Version 1)
+snippets/hero-bg-4k.liquid (PC Version 2 / Ultra-Wide)
+snippets/hero-mobile.liquid (Mobile Version)Product Codes
+
+2.Core File : sections/custom-products.liquid
+
+mobile product code : snippets/product-grid-mobile.liquid
+PC v1 product code : snippets/product-grid-v1.liquid
+PC v2 Product Code :snippets/product-grid-v2.liquid 
+
+live link : https://saba-fathima-48-teststore.myshopify.com
