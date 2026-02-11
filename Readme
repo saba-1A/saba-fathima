@@ -1,28 +1,36 @@
-My Development Process & File Structure
+My Shopify Development Process & File Structure
+Project Architecture
+To keep the code clean and scalable, I used a modular approach. Instead of putting all the code into one giant file, I created "Controller" files that call specific "Snippets" based on the version or device being used.
 
-Project File Structure
+1. Custom Banner Section
 
-Core Controller File
+Core Controller: sections/custom-banner.liquid
 
-sections/custom-banner.liquid
+Navigation Snippets: Separate files for PC (v1 & v2) and Mobile to ensure a clean UI.
 
-Navigation (Navbar) Versions
+Hero Snippets: Dedicated snippets for Full PC, 4K Ultra-Wide, and Mobile views.
 
-snippets/navbar-v1.liquid (PC Version 1)
+2. Custom Product Grid
 
-snippets/navbar-v2.liquid (PC Version 2)
+Core Controller: sections/custom-products.liquid
 
-snippets/navbar-mobile.liquid (Mobile Version)
-
-Hero Banner Versions
-
-snippets/hero-v1-full.liquid (PC Version 1)
-
-snippets/hero-bg-4k.liquid (PC Version 2 / Ultra-Wide)
-
-snippets/hero-mobile.liquid (Mobile Version)
+Grid Snippets: Divided into product-grid-v1, product-grid-v2, and product-grid-mobile.
 
 Development Strategy
-I separated the primary UI components into these modular versions to maintain a clean and scalable codebase. This prevents "code bloat" and ensures that the Custom Banner remains a clean controller file.
+Since this was my first time using Shopify, I spent time researching Liquid and studying the theme's existing structure. Drawing from my experience with Craft CMS, I realized that separating code into snippets would prevent "code bloat." This makes the site easier to maintain and much faster to edit for specific devices.
 
-Initially, I thought about putting all the Navbar code into one single file. However, after seeing how the theme structure uses separate files for different parts, I decided to do the same. By following this professional style, I can keep my code organized, much cleaner, and easier to edit for each specific version.
+Key Features Implemented
+Fully Editable Content: As requested, all text (highlighted in red in the instructions) and product selections are fully editable via the Shopify Customizer.
+
+Dynamic Popups: The product grid features a popup that dynamically pulls the name, price, description, and variants directly from the product data.
+
+Vanilla JavaScript: All interactive elements, including button animations and the Add-to-Cart logic, were built using pure JavaScript (no jQuery).
+
+Automatic "Gift" Logic: I implemented a custom script so that if a user adds a product with the "Medium" size and "Black" color to their cart, the "Soft Winter Jacket" is automatically added as well.
+
+Functional Checkout: The Add-to-Cart system is fully functional, and the checkout button successfully directs users to the final payment page.
+
+Summary
+Even though I was new to Shopify, I learned a lot during this process. It was a fun challenge and definitely worth my time—thank you for giving me the opportunity to try this out!
+
+Regarding the timeline, I noticed both 3 and 7 days mentioned in the instructions. To be safe and ensure I met all requirements promptly, I decided to stick to the 3-day deadline. I'm really happy with the progress I made in that window
