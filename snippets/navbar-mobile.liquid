@@ -1,12 +1,23 @@
 {%- style -%}
+  /* --- Mobile Navbar (Frame 1956) --- */
   #Section-{{ section.id }} .custom-navbar-mobile {
-    display: none; /* Hidden by default, shown via media query */
+    display: none; /* Hidden on desktop, triggered by media query below */
     width: 100%;
-    height: 65px;
+    height: 65px; /* Hug (65px) */
     background: rgba(247, 247, 247, 1);
-    padding: 23px 112px 23px 16px;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+    
+    /* Exact Padding */
+    padding: 23px 112px 23px 16px; 
+    
+    /* Layout & Gap */
+    /* We apply flex directly here to match "Frame 1956" behavior */
+    display: none; 
     align-items: center;
+    gap: 78px; /* Exact Figma Gap */
+    
+    /* Shadow */
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+    
     box-sizing: border-box;
     position: relative;
     z-index: 20;
@@ -20,32 +31,44 @@
   }
 
   #Section-{{ section.id }} .hamburger-icon {
-    width: 24px;
-    height: 18px;
+    width: 18px;
+    height: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between;/* This automatically spaces the 3 lines to fit 10px */
     cursor: pointer;
+    flex-shrink: 0;
   }
+  
 
   #Section-{{ section.id }} .hamburger-line {
     width: 100%;
     height: 2px;
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 1);
+    display: block;
+    border-radius: 0;
   }
 
   #Section-{{ section.id }} .mobile-brand {
     font-family: 'Jost', sans-serif;
     font-weight: 500;
     font-size: 24px;
+    color: rgba(0, 0, 0, 1);
     text-transform: uppercase;
     white-space: nowrap;
+    overflow: hidden; /* safety */
+    /* Sizing to match Figma text box */
+    width: 151.44px; 
+    height: 19px;
+    line-height: 19px; /* Vertically centers text in the box */
   }
+  
+ 
 
-  /* Show mobile, hide desktop */
+  /* Media Query: Show mobile, hide desktop */
   @media screen and (max-width: 768px) {
     #Section-{{ section.id }} .custom-navbar-mobile {
-      display: flex;
+      display: flex; /* Activates the flex layout defined above */
     }
   }
 {%- endstyle -%}

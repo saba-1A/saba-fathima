@@ -2,9 +2,8 @@
   /* --- Top Bar (NAVBAR V2 - 4K Desktop) --- */
   #Section-{{ section.id }} .custom-banner__top-bar--v2 {
     background-color: {{ section.settings.top_bar_bg | default: '#F5F5F5' }};
-    height: 170.67px; /* Pic 1: Hug (170.67px) */
+    height: 170.67px;
     width: 100%;
-    /* Pic 1: Padding Top/Bottom 26.67px, Left/Right 133.33px */
     padding: 26.67px 133.33px; 
     display: flex;
     align-items: center;
@@ -12,20 +11,22 @@
     box-sizing: border-box;
     position: relative;
     z-index: 10;
+    font-family: 'Jost', sans-serif;
   }
 
-  /* Left: Brand (Pic 3) */
+  /* Left: Brand */
   #Section-{{ section.id }} .v2-brand {
     font-weight: 500;
     font-size: 50.67px; 
     text-transform: uppercase;
-    width: 403.85px; /* Pic 3 Layout Width */
+    width: 403.85px;
     height: 50.67px;
     display: flex;
     align-items: center;
+    white-space: nowrap;
   }
 
-  /* Middle: Text (Pic 2) */
+  /* Middle: Text */
   #Section-{{ section.id }} .v2-text {
     font-family: 'Jost', sans-serif;
     font-weight: 400;
@@ -35,9 +36,13 @@
     text-align: center;
     width: 693px; 
     height: 36px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
+    white-space: nowrap;
   }
 
   /* Right: Button Wrapper */
@@ -54,7 +59,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Jost', sans-serif;
     font-size: 42.67px; 
+    line-height: 54.61px;
     font-weight: 400;
     text-decoration: none;
     text-transform: uppercase;
@@ -66,6 +73,7 @@
     overflow: hidden; 
     z-index: 1;
     transition: color 0.4s ease;
+    /* Removed gap here to control spacing via arrow margin exactly */
   }
 
   /* The Black "Slide" Layer */
@@ -84,31 +92,47 @@
   /* Hover States */
   #Section-{{ section.id }} .v2-btn:hover {
     color: #ffffff; 
-    background-color: transparent; /* Allows the black ::before layer to show through clearly */
+    background-color: transparent;
   }
 
   #Section-{{ section.id }} .v2-btn:hover::before {
-    left: 0; /* Black slides in */
+    left: 0;
   }
 
-  #Section-{{ section.id }} .v2-arrow {
+  /* --- FIXED ARROW STYLING --- */
+  /* Renamed class to match HTML: .v2-arrow-svg */
+  #Section-{{ section.id }} .v2-arrow-svg {
+    width: 64px; /* Exact Width */
+    height: 34px; /* Aspect ratio height to prevent stretching */
+    fill: none;   /* CRITICAL: Prevents the "Black Triangle" fill */
+    stroke: currentColor; /* Inherits text color */
+    stroke-width: 4px;    /* Exact Thickness */
     margin-left: 20px;
-    display: inline-block;
+    display: block;
     transition: transform 0.3s ease;
   }
 
-  #Section-{{ section.id }} .v2-btn:hover .v2-arrow {
+  #Section-{{ section.id }} .v2-btn:hover .v2-arrow-svg {
     transform: translateX(10px);
   }
 {%- endstyle -%}
 
 <div class="custom-banner__top-bar--v2">
+  <!-- Left Brand -->
   <div class="v2-brand">{{ section.settings.brand_text }}</div>
+  
+  <!-- Middle Text -->
   <div class="v2-text">{{ section.settings.top_center_text }}</div>
+  
+  <!-- Right Button -->
   <div class="v2-btn-wrapper">
     <a href="{{ section.settings.top_btn_link }}" class="v2-btn">
       {{ section.settings.top_btn_text }}
-      <span class="v2-arrow">&rarr;</span>
+      
+      <!-- SVG: Added fill="none" inline as extra safety -->
+      <svg class="v2-arrow-svg" width="64" height="34" viewBox="0 0 64 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 17H62M45 2L62 17L45 32" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </a>
   </div>
 </div>
