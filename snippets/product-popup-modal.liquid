@@ -4,19 +4,29 @@
 </style>
 
 <div id="ProductModal" class="custom-modal-overlay">
+  <!-- Frame 1000009749 -->
   <div class="custom-modal-box">
     <!-- Close Button -->
-    <button class="custom-modal-close">&times;</button>
+    <button class="custom-modal-close">
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path d="M1 1L13 13M1 13L13 1" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
 
     <div class="custom-modal-body">
       <!-- Top Section: Image + Info -->
       <div class="custom-modal-top">
+        <!-- Image 846 -->
         <div class="custom-modal-img-container">
-          <img id="ModalImg" src="" alt="">
+          <img id="ModalImg" src="" alt="Product Image">
         </div>
+        
         <div class="custom-modal-info">
+          <!-- Text: Product Title -->
           <h3 id="ModalTitle">Product Title</h3>
+          <!-- Text: Price -->
           <p id="ModalPrice">0,00€</p>
+          <!-- Text: Description -->
           <div id="ModalDesc" class="custom-modal-desc">
             Description goes here...
           </div>
@@ -26,7 +36,7 @@
       <!-- Variants Section -->
       <div class="custom-modal-variants">
         
-        <!-- Color Selector (Segmented Box) -->
+        <!-- Color Selector (Component 211) -->
         <div class="variant-group" id="ColorGroup" style="display:none;">
           <label class="variant-label">Color</label>
           <div id="ColorContainer" class="custom-color-box">
@@ -34,31 +44,36 @@
           </div>
         </div>
         
-        <!-- Size Selector (Custom Dropdown) -->
-<div class="variant-group" id="SizeGroup" style="display:none;">
-  <label class="variant-label">Size</label>
-  
-  <div class="custom-dropdown-container" id="CustomSizeDropdown">
-    <!-- The Main Display Box (Trigger) -->
-    <div class="custom-dropdown-trigger" id="SizeTrigger">
-      <span id="SelectedSizeText">Choose your size</span>
-      <div class="trigger-arrow-box">
-        <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 1L6 6L11 1" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <!-- Size Selector (Component 213) -->
+        <div class="variant-group" id="SizeGroup" style="display:none;">
+          <label class="variant-label">Size</label>
+          
+          <div class="custom-dropdown-container" id="CustomSizeDropdown">
+            <!-- Trigger Box (Rectangle 17) -->
+            <div class="custom-dropdown-trigger" id="SizeTrigger">
+              <span id="SelectedSizeText">Choose your size</span>
+              
+              <!-- Vertical Line -->
+              <div class="trigger-divider"></div>
+              
+              <!-- Arrow Icon -->
+              <div class="trigger-arrow-box">
+                <svg width="10" height="6" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L6 6L11 1" stroke="black" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- The Hidden List (Options) -->
+            <div class="custom-dropdown-options" id="SizeOptionsList">
+              <!-- Options will be injected here by JS -->
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
 
-    <!-- The Hidden List (Options) -->
-    <div class="custom-dropdown-options" id="SizeOptionsList">
-      <!-- Options will be injected here by JS -->
-    </div>
-  </div>
-</div>
-
-      </div>
-
-      <!-- Add To Cart -->
+      <!-- Add To Cart Button -->
       <button id="AddToCartBtn" class="custom-atc-btn">
         <span>ADD TO CART</span>
         <svg width="25" height="10" viewBox="0 0 25 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,7 +86,10 @@
 </div>
 
 <style>
-  /* Modal Overlay */
+  /* --- RESET & LAYOUT --- */
+  * { box-sizing: border-box; }
+
+  /* Overlay */
   .custom-modal-overlay {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background: rgba(0,0,0,0.4); 
@@ -80,42 +98,39 @@
     z-index: 9999;
   }
 
-  /* Modal Box (Frame 1000009755) */
+  /* Modal Box - Frame 1000009749 */
   .custom-modal-box {
     width: 311px;
     height: 447px;
     background: #FFFFFF;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     position: relative;
-    box-sizing: border-box;
-    padding: 20px; /* Inferred from layout */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
   }
 
-  /* Close Button */
   .custom-modal-close {
     position: absolute;
-    top: 10px; right: 10px;
-    background: transparent; border: none;
-    font-size: 24px; cursor: pointer; color: #000;
-    line-height: 1;
-    z-index: 10;
+    top: 15px; right: 15px;
+    background: transparent; border: none; cursor: pointer;
+    z-index: 10; padding: 5px;
   }
 
-  /* Layout Structure */
   .custom-modal-body {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
 
+  /* --- TOP SECTION --- */
   .custom-modal-top {
     display: flex;
-    gap: 15px; /* Distance between image and text */
-    margin-bottom: 20px;
-    margin-top: 15px;
+    margin-bottom: 24px;
+    margin-top: 16px; 
+    gap: 8px;
   }
 
-  /* Image (image 846) */
   .custom-modal-img-container {
     width: 120px;
     height: 140px;
@@ -123,296 +138,226 @@
   }
   #ModalImg {
     width: 100%; height: 100%; object-fit: cover;
+    display: block;
   }
 
-  /* Typography */
   .custom-modal-info {
     display: flex;
     flex-direction: column;
+    padding-top: 13px;
   }
 
-  /* Title */
   #ModalTitle {
     font-family: 'Jost', sans-serif;
-    font-weight: 300; /* Light */
+    font-weight: 300;
     font-size: 16px;
     line-height: 120%;
-    margin: 13px 0 5px 0; /* Align with top 49px */
-    color: #000;
+    color: #000000;
+    margin: 0 0 5px 0;
   }
 
-  /* Price */
   #ModalPrice {
     font-family: 'Lustria', serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 120%;
-    margin: 0 0 10px 0;
-    color: #000;
+    color: #000000;
+    margin: 0 0 12px 0;
   }
 
-  /* Description */
   .custom-modal-desc {
     font-family: 'Jost', sans-serif;
-    font-weight: 300; /* Light */
-    font-size: 14px;
-    line-height: 110%;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 110%; 
     letter-spacing: -0.01em;
-    color: #000;
-    width: 136px;
-    height: 60px;
+    color: #000000;
+    width: 136px; 
+    height: 52px;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
   }
 
-  /* Labels */
+  /* --- VARIANTS SECTION --- */
+  .custom-modal-variants {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .variant-group {
+    width: 100%;
+  }
+
   .variant-label {
     font-family: 'Jost', sans-serif;
     font-weight: 400;
     font-size: 14px;
-    line-height: 130%; /* 18.2px */
-    color: #000;
+    line-height: 130%;
+    color: #000000;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
   }
 
-  .variant-group {
-    margin-bottom: 15px;
-  }
-  
-
-  /* COLOR COMPONENT (Component 211) */
+  /* --- COMPONENT 211: COLOR --- */
   .custom-color-box {
     width: 271px;
     height: 40px;
     border: 0.5px solid #000000;
     display: flex;
-    align-items: center;
+    overflow: hidden;
   }
-  
+
   .color-option {
     flex: 1;
-    text-align: center;
-    font-family: 'Jost', sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 100%;
-    letter-spacing: -0.02em;
-    text-transform: capitalize; /* Title case */
-    cursor: pointer;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative; 
-    transition: background 0.2s, color 0.2s;
-  }
-
-  
-  .color-option.active {
-    background: #000;
-    color: #fff;
-  }
-
-  /* Vertical Divider (Line 25) */
-  .color-divider {
-    width: 0.5px;
-    height: 40px;
-    background: #000;
-  }
-/* 1. SIZE DIVIDER  */
-.size-divider {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 40px; /* Positioned to the left of the arrow */
-  width: 0.5px; /* From Figma Line 25 */
-  background: #000;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* 2. COLOR OPTION LAYOUT  */
-.color-option {
-  flex: 1;
-  display: flex; /* Flex to align Bar and Text */
-  align-items: center;
-  justify-content: center;
-  gap: 10px; /* Space between bar and text */
-  position: relative;
-  height: 100%;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  /* Font styles remain same */
-  font-family: 'Jost', sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 100%;
-  letter-spacing: -0.02em;
-  text-transform: capitalize; 
-}
-.color-bar {
-  position: absolute; /* Takes the bar out of the flow */
-  left: 0;            /* Pins it strictly to the left edge */
-  top: 0;
-  width: 6px; /* Approx 5.81px from Figma */
-  height: 100%; /* Full height (approx 40px) */
-  /* Default styling, colors injected via JS */
-  flex-shrink: 0;
-  z-index: 1;
-}
-
-
-/* Active State for Color text */
-.color-option.active {
-  background: #000;
-  color: #fff;
-}
-
-  
-
-  #SelectedSizeText {
+    cursor: pointer;
+    background: #FFFFFF;
+    transition: background 0.3s ease, color 0.3s ease;
+    border-right: 0.5px solid #000;
+    position: relative;
+    
+    /* Typography */
     font-family: 'Jost', sans-serif;
     font-weight: 400;
     font-size: 18px;
     line-height: 100%;
     letter-spacing: -0.02em;
+    color: #000000;
     text-transform: capitalize;
-    color: #000;
+  }
+  
+  .color-option:last-child {
+    border-right: none;
   }
 
- /* --- CUSTOM SIZE DROPDOWN STYLES --- */
+  /* The small color indicator bar */
+  .color-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    /* Width and color set via JS based on variant */
+    z-index: 1;
+  }
 
-/* Main Container */
-.custom-dropdown-container {
-  width: 271px;
-  position: relative; /* Essential for positioning the list below */
-  font-family: 'Jost', sans-serif;
-  user-select: none;
-  z-index: 100; /* Ensure it floats above other content */
-}
+  /* Active State (Selected) */
+  .color-option.active {
+    background: #000000;
+    color: #FFFFFF;
+  }
 
-/* The Trigger (Top Box) */
-.custom-dropdown-trigger {
-  width: 100%;
-  height: 40px; /* Matching Figma height */
-  border: 0.5px solid #000;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  box-sizing: border-box;
-}
+  /* --- COMPONENT 213: SIZE --- */
+  .custom-dropdown-container {
+    width: 271px;
+    position: relative;
+    z-index: 100;
+  }
 
-/* The Text Area inside Trigger */
-#SelectedSizeText {
-  flex: 1; /* Takes up remaining space */
-  padding-left: 15px; /* Spacing from left */
-  font-weight: 400;
-  font-size: 18px;
-  text-transform: capitalize;
-  color: #000;
-  /* Centering text vertically */
-  display: flex; 
-  align-items: center;
+  .custom-dropdown-trigger {
+    width: 271px;
+    height: 40px;
+    border: 0.5px solid #000000;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
 
-  /* FIGMA TYPOGRAPHY SETTINGS */
-  font-family: 'Jost', sans-serif;
-  font-weight: 400;
-  font-size: 16px;         /* Updated to 16px */
-  line-height: 100%;       /* Added from Figma */
-  letter-spacing: -0.02em; /* Added from Figma (-2%) */
-  color: #000;
-}
+  #SelectedSizeText {
+    flex-grow: 1;
+    padding-left: 13px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    color: #000000;
+    text-transform: capitalize;
+  }
 
-/* The Arrow Box (Right side) */
-.trigger-arrow-box {
-  width: 40px; /* Square box for arrow */
-  height: 100%;
-  border-left: 0.5px solid #000; /* The divider line */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .trigger-divider {
+    width: 0.5px;
+    height: 100%;
+    background: #000000;
+  }
 
-/* The Dropdown List (Initially Hidden) */
-.custom-dropdown-options {
-  display: none; /* Hidden by default */
-  position: absolute;
-  top: 100%; /* Directly below the trigger */
-  left: 0;
-  width: 271px; /* Matches trigger width */
-  max-height: 150px; /* Limits height to allow scrolling */
-  overflow-y: auto; /* Enables Scroll (Pic 4) */
-  background: #fff;
-  border: 0.5px solid #000;
-  border-top: none; /* Merges with the box above */
-  box-sizing: border-box;
-  z-index: 200;
-}
+  .trigger-arrow-box {
+    width: 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-/* Show the list when active */
-.custom-dropdown-options.show {
-  display: block;
-}
+  .custom-dropdown-options {
+    display: none;
+    position: absolute;
+    top: 39px;
+    left: 0;
+    width: 271px;
+    max-height: 182px;
+    overflow-y: auto;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-top: none;
+    z-index: 200;
+  }
 
-/* Individual Option Items */
-.dropdown-item {
-  height: 36px; /* Figma Component 212 height */
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Center text */
-  font-size: 16px;
-  color: #000;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  .custom-dropdown-options.show {
+    display: block;
+  }
 
-  /* FIGMA TYPOGRAPHY SETTINGS */
-  font-family: 'Jost', sans-serif;
-  font-weight: 400;
-  font-size: 16px;         /* Match Figma */
-  line-height: 100%;       /* Match Figma */
-  letter-spacing: -0.02em; /* Match Figma (-2%) */
-  text-transform: uppercase; /* Ensures it looks like "XS" */
-  color: #000;             /* Default Black Text */
+  .custom-dropdown-options::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-dropdown-options::-webkit-scrollbar-thumb {
+    background: #000;
+  }
 
-}
+  .dropdown-item {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: #FFFFFF;
+    transition: all 0.2s ease;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #000000;
+  }
 
-/* Hover Effect */
-.dropdown-item:hover, .dropdown-item.selected {
-  background: #000000;     /* Figma: rgba(0,0,0,1) */
-  color: #FFFFFF;          /* Figma: rgba(255,255,255,1) */
-}
+  .dropdown-item:hover, 
+  .dropdown-item.selected {
+    background: #000000;
+    color: #FFFFFF;
+  }
 
-/* Selected State */
-.dropdown-item.selected {
-  background: #000;
-  color: #fff;
-}
-
-/* Custom Scrollbar Styling (Optional, makes it look cleaner) */
-.custom-dropdown-options::-webkit-scrollbar {
-  width: 4px;
-}
-.custom-dropdown-options::-webkit-scrollbar-thumb {
-  background: #ccc; 
-  border-radius: 2px;
-}
-
-  /* ADD TO CART BUTTON (Group 1000007810) */
+  /* --- ADD TO CART BUTTON --- */
   .custom-atc-btn {
     width: 271px;
     height: 45px;
     background: #000000;
     color: #FFFFFF;
     border: none;
+    margin-top: auto;
+    margin-bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px; /* Adjust spacing between text and arrow */
+    gap: 10px;
     cursor: pointer;
-    margin-top: auto; /* Push to bottom */
-    margin-bottom: 10px;
     transition: opacity 0.2s;
   }
   
@@ -420,17 +365,16 @@
     font-family: 'Jost', sans-serif;
     font-weight: 400;
     font-size: 16px;
-    text-transform: uppercase;
-    text-align: center;
+    letter-spacing: 0.05em; 
   }
 
   .custom-atc-btn:hover {
     opacity: 0.9;
   }
 </style>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // --- ELEMENTS ---
   const modal = document.getElementById('ProductModal');
   const modalImg = document.getElementById('ModalImg');
   const modalTitle = document.getElementById('ModalTitle');
@@ -440,171 +384,141 @@ document.addEventListener('DOMContentLoaded', function() {
   const colorGroup = document.getElementById('ColorGroup');
   const colorContainer = document.getElementById('ColorContainer');
   
-  // -- NEW SIZE ELEMENTS --
   const sizeGroup = document.getElementById('SizeGroup');
   const sizeTrigger = document.getElementById('SizeTrigger');
   const sizeOptionsList = document.getElementById('SizeOptionsList');
   const selectedSizeText = document.getElementById('SelectedSizeText');
   
   const addToCartBtn = document.getElementById('AddToCartBtn');
+  const closeBtn = document.querySelector('.custom-modal-close');
 
-  // --- STATE ---
   let currentProduct = null;
   let selectedColor = null;
   let selectedSize = null;
 
-  // 1. DROPDOWN TOGGLE LOGIC
-  // Click on the box to toggle list
-  sizeTrigger.addEventListener('click', function(e) {
-    e.stopPropagation(); // Prevent closing immediately
-    sizeOptionsList.classList.toggle('show');
-  });
-
-  // Close dropdown if clicking anywhere else on screen
-  document.addEventListener('click', function(e) {
-    if (!sizeTrigger.contains(e.target)) {
-      sizeOptionsList.classList.remove('show');
-    }
-  });
-
-  // 1. OPEN MODAL LOGIC
+  // --- MODAL OPEN LOGIC ---
   document.body.addEventListener('click', function(e) {
     const btn = e.target.closest('.js-open-popup');
     if (btn) {
       e.preventDefault();
-      try {
-        const jsonStr = btn.getAttribute('data-product-json');
-        currentProduct = JSON.parse(jsonStr);
-        
-        // Setup data
-        openModal(currentProduct);
-        
-        // Show Modal
-        modal.style.display = 'flex';
-      } catch(err) {
-        console.error('Error parsing product JSON', err);
+      const productData = btn.getAttribute('data-product-json');
+      if (productData) {
+        try {
+          currentProduct = JSON.parse(productData);
+          initModal(currentProduct);
+          modal.style.display = 'flex';
+        } catch(err) {
+          console.error('Error parsing product JSON', err);
+        }
       }
     }
   });
 
-  // 2. CLOSE MODAL LOGIC
-  document.querySelector('.custom-modal-close').addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
+  const closeModal = () => { modal.style.display = 'none'; };
+  closeBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => {
-    if (e.target === modal) modal.style.display = 'none';
+    if (e.target === modal) closeModal();
   });
 
-  // 3. MAIN FUNCTION TO SETUP MODAL
-  function openModal(product) {
-    // Reset State
+  // --- INIT CONTENT ---
+  function initModal(product) {
     selectedColor = null;
     selectedSize = null;
     selectedSizeText.innerText = "Choose your size";
     sizeOptionsList.classList.remove('show');
-    
-    // Fill Info
-    modalImg.src = product.featured_image ? product.featured_image : '';
-    modalTitle.innerText = product.title;
-    modalPrice.innerText = (product.price / 100).toFixed(2).replace('.', ',') + '€';
-    
-    // Description
-    const div = document.createElement('div');
-    div.innerHTML = product.description;
-    modalDesc.innerText = div.textContent;
 
-    // Clear Options
-    colorContainer.innerHTML = '';
-    sizeOptionsList.innerHTML = '';
+    modalTitle.innerText = product.title;
+    const priceFormatted = (product.price / 100).toFixed(2).replace('.', ',') + '€';
+    modalPrice.innerText = priceFormatted;
     
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = product.description;
+    modalDesc.innerText = tempDiv.textContent.trim();
+    
+    if (product.featured_image) {
+        modalImg.src = product.featured_image;
+    } else if (product.images && product.images.length > 0) {
+        modalImg.src = product.images[0];
+    } else {
+        modalImg.src = '';
+    }
+
     colorGroup.style.display = 'none';
     sizeGroup.style.display = 'none';
+    colorContainer.innerHTML = '';
+    sizeOptionsList.innerHTML = '';
 
-    // Helper: Find option names
-    const colorOpt = product.options.find(o => /colo(u)?r/i.test(o));
-    const sizeOpt = product.options.find(o => /size/i.test(o));
+    const colorOptionName = product.options.find(opt => /color|colour/i.test(opt));
+    const sizeOptionName = product.options.find(opt => /size/i.test(opt));
     
-    // --- RENDER COLORS ---
-    if (colorOpt) {
+    const colorIdx = product.options.indexOf(colorOptionName);
+    const sizeIdx = product.options.indexOf(sizeOptionName);
+
+    // --- RENDER COLORS WITH INDICATOR BARS ---
+    if (colorOptionName) {
       colorGroup.style.display = 'block';
-      const colorIndex = product.options.indexOf(colorOpt);
-      const values = [...new Set(product.variants.map(v => v.options[colorIndex]))];
-
-      const colorMap = {
-        'blue': '#0047AB', 'red': '#C8102E', 'grey': '#9E9E9E',  
-        'gray': '#9E9E9E', 'black': '#000000', 'white': '#FFFFFF'
-      };
+      const colors = [...new Set(product.variants.map(v => v.options[colorIdx]))];
       
-      values.forEach((val, idx) => {
-        // Container
-        const optDiv = document.createElement('div');
-        optDiv.className = 'color-option';
+      colors.forEach((col, index) => {
+        const colDiv = document.createElement('div');
+        colDiv.className = 'color-option';
         
-        // Bar
-        const barDiv = document.createElement('div');
-        barDiv.className = 'color-bar';
-        const cName = val.toLowerCase();
-        
+        // 1. Create the Color Bar
+        const bar = document.createElement('div');
+        bar.className = 'color-bar';
+        const cName = col.toLowerCase();
+
+        //  Colour logic for the bars
         if (cName === 'white') {
-            barDiv.style.backgroundColor = '#FFFFFF';
-            barDiv.style.border = '0.5px solid #000000'; 
+            // Rectangle 26065: Width 5.81px, White fill, Black border
+            bar.style.width = '5.81px';
+            bar.style.backgroundColor = '#FFFFFF';
+            bar.style.border = '0.5px solid #000000';
         } else {
-            barDiv.style.backgroundColor = colorMap[cName] || cName;
+            // Rectangle 26067 (Black/Others): Width 4.84px, Black fill, Black border
+            bar.style.width = '4.84px';
+            bar.style.backgroundColor = '#000000';
+            bar.style.border = '0.5px solid #000000';
         }
 
-        // Text
+        colDiv.appendChild(bar);
+
+        // 2. Create the Text
         const textSpan = document.createElement('span');
-        textSpan.innerText = val;
+        textSpan.innerText = col;
+        colDiv.appendChild(textSpan);
 
-        optDiv.appendChild(barDiv);
-        optDiv.appendChild(textSpan);
-        
-        // Auto-select first
-        if (idx === 0) {
-           optDiv.classList.add('active');
-           selectedColor = val;
+        colDiv.addEventListener('click', () => {
+          document.querySelectorAll('.color-option').forEach(c => c.classList.remove('active'));
+          colDiv.classList.add('active');
+          selectedColor = col;
+        });
+
+        if (index === 0) {
+            colDiv.classList.add('active');
+            selectedColor = col;
         }
 
-        // Click Handler
-        optDiv.onclick = () => {
-          document.querySelectorAll('.color-option').forEach(el => el.classList.remove('active'));
-          optDiv.classList.add('active');
-          selectedColor = val;
-        };
-
-        colorContainer.appendChild(optDiv);
-        
-        // Divider
-        if (idx < values.length - 1) {
-          const divider = document.createElement('div');
-          divider.className = 'color-divider';
-          colorContainer.appendChild(divider);
-        }
+        colorContainer.appendChild(colDiv);
       });
     }
 
-    // --- RENDER SIZES (NEW CUSTOM LOGIC) ---
-    if (sizeOpt) {
+    // --- RENDER SIZES ---
+    if (sizeOptionName) {
       sizeGroup.style.display = 'block';
-      const sizeIndex = product.options.indexOf(sizeOpt);
-      const values = [...new Set(product.variants.map(v => v.options[sizeIndex]))];
+      const sizes = [...new Set(product.variants.map(v => v.options[sizeIdx]))];
       
-      // Create Custom Div Options
-      values.forEach(val => {
+      sizes.forEach(size => {
         const item = document.createElement('div');
         item.className = 'dropdown-item';
-        item.innerText = val; // e.g., "S", "M", "L"
+        item.innerText = size;
         
-        // Handle Click on specific Size
-        item.addEventListener('click', function() {
-          // 1. Update State
-          selectedSize = val;
-          // 2. Update Display Text
-          selectedSizeText.innerText = val;
-          // 3. Highlight selected (optional)
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectedSize = size;
+          selectedSizeText.innerText = size;
           document.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('selected'));
           item.classList.add('selected');
-          // 4. Close Dropdown
           sizeOptionsList.classList.remove('show');
         });
 
@@ -613,39 +527,51 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // --- INTERACTIONS ---
+  sizeTrigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    sizeOptionsList.classList.toggle('show');
+  });
 
-  // 4. ADD TO CART LOGIC
-  addToCartBtn.addEventListener('click', function() {
-    // Validation
+  document.addEventListener('click', (e) => {
+    if (!sizeTrigger.contains(e.target)) {
+      sizeOptionsList.classList.remove('show');
+    }
+  });
+
+  // --- ADD TO CART ---
+  addToCartBtn.addEventListener('click', () => {
+    if (!currentProduct) return;
+
     if (sizeGroup.style.display !== 'none' && !selectedSize) {
-      alert("Please select a size.");
+      alert('Please choose a size.');
+      return;
+    }
+    if (colorGroup.style.display !== 'none' && !selectedColor) {
+      alert('Please choose a color.');
       return;
     }
 
-    // Find Variant
     const variant = currentProduct.variants.find(v => {
-      let matchColor = !selectedColor || v.options.includes(selectedColor);
-      let matchSize = !selectedSize || v.options.includes(selectedSize);
+      const matchColor = selectedColor ? v.options.includes(selectedColor) : true;
+      const matchSize = selectedSize ? v.options.includes(selectedSize) : true;
       return matchColor && matchSize;
     });
 
     if (!variant) {
-      alert("This variant is unavailable.");
+      alert('This combination is unavailable.');
       return;
     }
 
-    // Payload
-    let itemsToAdd = [{ id: variant.id, quantity: 1 }];
+    const itemsToAdd = [{ id: variant.id, quantity: 1 }];
 
-    // Soft Winter Jacket Special Logic
     const isBlack = selectedColor && selectedColor.toLowerCase() === 'black';
-    const isMedium = selectedSize && (selectedSize.toLowerCase() === 'medium' || selectedSize === 'M');
+    const isMedium = selectedSize && (selectedSize.toLowerCase() === 'medium' || selectedSize === 'm');
 
     if (isBlack && isMedium) {
-      itemsToAdd.push({ id: 51672829329690, quantity: 1 });
+       itemsToAdd.push({ id: 51672829329690, quantity: 1 });
     }
 
-    // Add to Cart Fetch
     fetch(window.Shopify.routes.root + 'cart/add.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -660,6 +586,5 @@ document.addEventListener('DOMContentLoaded', function() {
       alert('Failed to add to cart.');
     });
   });
-
 });
 </script>
