@@ -34,21 +34,27 @@
           </div>
         </div>
         
-        <!-- Size Selector (Dropdown Box) -->
-        <div class="variant-group" id="SizeGroup" style="display:none;">
-          <label class="variant-label">Size</label>
-          <div class="custom-select-box">
-             <span id="SelectedSizeText">Choose your size</span>
-             <select id="SizeSelect" class="real-select"></select>
-                  <!-- Vertical Line Divider -->
-     <div class="size-divider"></div>
+        <!-- Size Selector (Custom Dropdown) -->
+<div class="variant-group" id="SizeGroup" style="display:none;">
+  <label class="variant-label">Size</label>
+  
+  <div class="custom-dropdown-container" id="CustomSizeDropdown">
+    <!-- The Main Display Box (Trigger) -->
+    <div class="custom-dropdown-trigger" id="SizeTrigger">
+      <span id="SelectedSizeText">Choose your size</span>
+      <div class="trigger-arrow-box">
+        <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L6 6L11 1" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
 
-             <!-- Custom Vector Arrow -->
-             <svg class="select-arrow" width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 6L0 0H12L6 6Z" fill="black"/>
-             </svg>
-          </div>
-        </div>
+    <!-- The Hidden List (Options) -->
+    <div class="custom-dropdown-options" id="SizeOptionsList">
+      <!-- Options will be injected here by JS -->
+    </div>
+  </div>
+</div>
 
       </div>
 
@@ -226,7 +232,7 @@
   pointer-events: none;
 }
 
-/* 2. COLOR OPTION LAYOUT UPDATE */
+/* 2. COLOR OPTION LAYOUT  */
 .color-option {
   flex: 1;
   display: flex; /* Flex to align Bar and Text */
@@ -263,18 +269,7 @@
   color: #fff;
 }
 
-  /* SIZE COMPONENT (Component 213) */
-  .custom-select-box {
-    width: 271px;
-    height: 40px;
-    border: 0.5px solid #000000;
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
-    box-sizing: border-box;
-    cursor: pointer;
-  }
+  
 
   #SelectedSizeText {
     font-family: 'Jost', sans-serif;
@@ -286,19 +281,123 @@
     color: #000;
   }
 
-  .select-arrow {
-    position: absolute;
-    right: 13px;
-    pointer-events: none;
-  }
+ /* --- CUSTOM SIZE DROPDOWN STYLES --- */
 
-  /* The actual select is hidden but covers the box for functionality */
-  .real-select {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    opacity: 0;
-    cursor: pointer;
-  }
+/* Main Container */
+.custom-dropdown-container {
+  width: 271px;
+  position: relative; /* Essential for positioning the list below */
+  font-family: 'Jost', sans-serif;
+  user-select: none;
+  z-index: 100; /* Ensure it floats above other content */
+}
+
+/* The Trigger (Top Box) */
+.custom-dropdown-trigger {
+  width: 100%;
+  height: 40px; /* Matching Figma height */
+  border: 0.5px solid #000;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* The Text Area inside Trigger */
+#SelectedSizeText {
+  flex: 1; /* Takes up remaining space */
+  padding-left: 15px; /* Spacing from left */
+  font-weight: 400;
+  font-size: 18px;
+  text-transform: capitalize;
+  color: #000;
+  /* Centering text vertically */
+  display: flex; 
+  align-items: center;
+
+  /* FIGMA TYPOGRAPHY SETTINGS */
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 16px;         /* Updated to 16px */
+  line-height: 100%;       /* Added from Figma */
+  letter-spacing: -0.02em; /* Added from Figma (-2%) */
+  color: #000;
+}
+
+/* The Arrow Box (Right side) */
+.trigger-arrow-box {
+  width: 40px; /* Square box for arrow */
+  height: 100%;
+  border-left: 0.5px solid #000; /* The divider line */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The Dropdown List (Initially Hidden) */
+.custom-dropdown-options {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 100%; /* Directly below the trigger */
+  left: 0;
+  width: 271px; /* Matches trigger width */
+  max-height: 150px; /* Limits height to allow scrolling */
+  overflow-y: auto; /* Enables Scroll (Pic 4) */
+  background: #fff;
+  border: 0.5px solid #000;
+  border-top: none; /* Merges with the box above */
+  box-sizing: border-box;
+  z-index: 200;
+}
+
+/* Show the list when active */
+.custom-dropdown-options.show {
+  display: block;
+}
+
+/* Individual Option Items */
+.dropdown-item {
+  height: 36px; /* Figma Component 212 height */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center text */
+  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+
+  /* FIGMA TYPOGRAPHY SETTINGS */
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 16px;         /* Match Figma */
+  line-height: 100%;       /* Match Figma */
+  letter-spacing: -0.02em; /* Match Figma (-2%) */
+  text-transform: uppercase; /* Ensures it looks like "XS" */
+  color: #000;             /* Default Black Text */
+
+}
+
+/* Hover Effect */
+.dropdown-item:hover, .dropdown-item.selected {
+  background: #000000;     /* Figma: rgba(0,0,0,1) */
+  color: #FFFFFF;          /* Figma: rgba(255,255,255,1) */
+}
+
+/* Selected State */
+.dropdown-item.selected {
+  background: #000;
+  color: #fff;
+}
+
+/* Custom Scrollbar Styling (Optional, makes it look cleaner) */
+.custom-dropdown-options::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-dropdown-options::-webkit-scrollbar-thumb {
+  background: #ccc; 
+  border-radius: 2px;
+}
 
   /* ADD TO CART BUTTON (Group 1000007810) */
   .custom-atc-btn {
@@ -341,9 +440,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const colorGroup = document.getElementById('ColorGroup');
   const colorContainer = document.getElementById('ColorContainer');
   
+  // -- NEW SIZE ELEMENTS --
   const sizeGroup = document.getElementById('SizeGroup');
-  const sizeSelect = document.getElementById('SizeSelect'); // The <select> tag
-  const selectedSizeText = document.getElementById('SelectedSizeText'); // The text span
+  const sizeTrigger = document.getElementById('SizeTrigger');
+  const sizeOptionsList = document.getElementById('SizeOptionsList');
+  const selectedSizeText = document.getElementById('SelectedSizeText');
   
   const addToCartBtn = document.getElementById('AddToCartBtn');
 
@@ -351,6 +452,20 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentProduct = null;
   let selectedColor = null;
   let selectedSize = null;
+
+  // 1. DROPDOWN TOGGLE LOGIC
+  // Click on the box to toggle list
+  sizeTrigger.addEventListener('click', function(e) {
+    e.stopPropagation(); // Prevent closing immediately
+    sizeOptionsList.classList.toggle('show');
+  });
+
+  // Close dropdown if clicking anywhere else on screen
+  document.addEventListener('click', function(e) {
+    if (!sizeTrigger.contains(e.target)) {
+      sizeOptionsList.classList.remove('show');
+    }
+  });
 
   // 1. OPEN MODAL LOGIC
   document.body.addEventListener('click', function(e) {
@@ -386,6 +501,7 @@ document.addEventListener('DOMContentLoaded', function() {
     selectedColor = null;
     selectedSize = null;
     selectedSizeText.innerText = "Choose your size";
+    sizeOptionsList.classList.remove('show');
     
     // Fill Info
     modalImg.src = product.featured_image ? product.featured_image : '';
@@ -399,7 +515,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Clear Options
     colorContainer.innerHTML = '';
-    sizeSelect.innerHTML = '<option value="" disabled selected>Choose your size</option>';
+    sizeOptionsList.innerHTML = '';
     
     colorGroup.style.display = 'none';
     sizeGroup.style.display = 'none';
@@ -467,29 +583,38 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 
-    // --- RENDER SIZES ---
+    // --- RENDER SIZES (NEW CUSTOM LOGIC) ---
     if (sizeOpt) {
       sizeGroup.style.display = 'block';
       const sizeIndex = product.options.indexOf(sizeOpt);
       const values = [...new Set(product.variants.map(v => v.options[sizeIndex]))];
       
-      // Populate the existing <select> element
+      // Create Custom Div Options
       values.forEach(val => {
-        const option = document.createElement('option');
-        option.value = val;
-        option.innerText = val;
-        sizeSelect.appendChild(option);
+        const item = document.createElement('div');
+        item.className = 'dropdown-item';
+        item.innerText = val; // e.g., "S", "M", "L"
+        
+        // Handle Click on specific Size
+        item.addEventListener('click', function() {
+          // 1. Update State
+          selectedSize = val;
+          // 2. Update Display Text
+          selectedSizeText.innerText = val;
+          // 3. Highlight selected (optional)
+          document.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('selected'));
+          item.classList.add('selected');
+          // 4. Close Dropdown
+          sizeOptionsList.classList.remove('show');
+        });
+
+        sizeOptionsList.appendChild(item);
       });
     }
   }
 
-  // 4. SIZE CHANGE LISTENER
-  sizeSelect.addEventListener('change', function() {
-    selectedSize = this.value;
-    selectedSizeText.innerText = selectedSize;
-  });
 
-  // 5. ADD TO CART LOGIC
+  // 4. ADD TO CART LOGIC
   addToCartBtn.addEventListener('click', function() {
     // Validation
     if (sizeGroup.style.display !== 'none' && !selectedSize) {
