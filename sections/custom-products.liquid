@@ -1,23 +1,92 @@
+<!-- Load Font from Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lustria&display=swap" rel="stylesheet">
+
 <section id="Section-{{ section.id }}" class="custom-v1-wrapper">
+  
+  <!-- TITLE SECTION (Desktop Standard) -->
+  <!-- We keep this outside the grid to maintain the global structure, but style it specifically for Desktop -->
   {% if section.settings.heading != blank %}
-    <div class="v1-title-container">
+    <div class="v1-title-container desktop-header">
       <h2 class="v1-title">{{ section.settings.heading }}</h2>
     </div>
   {% endif %}
 
-  <!-- DESKTOP -->
+  <!-- =========================================
+       1. STANDARD DESKTOP (Grid V1) 
+  ========================================= -->
   <div class="desktop-only">
-    {% render 'product-grid-v1', section: section %}
+    <div class="desktop-v1-grid">
+      {% for i in (1..6) %}
+        {% capture prod_id %}prod_{{ i }}{% endcapture %}
+        {% assign product = all_products[section.settings[prod_id]] %}
+        
+        <!-- Desktop Item Container -->
+        <div class="desktop-v1-item">
+          {% if product != blank %}
+            <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}">
+            
+            <!-- Hotspot Button (Figma Pic 10-13) -->
+            <button class="desktop-v1-hotspot js-open-popup" 
+                    data-product-json="{{ product | json | escape }}">
+              <span class="desktop-plus-icon"></span>
+            </button>
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag }}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
   </div>
 
-  <!-- ULTRA WIDE -->
+  <!-- =========================================
+       2. ULTRA WIDE (Grid V2 - 4K) 
+  ========================================= -->
   <div class="v2-only">
     {% render 'product-grid-v2', section: section %}
   </div>
 
-  <!-- MOBILE -->
+  <!-- =========================================
+       3. MOBILE
+  ========================================= -->
   <div class="mobile-only">
-    {% render 'product-grid-mobile', section: section %}
+    <div class="tisso-mobile-wrapper">
+      
+      <!-- Mobile Title (Inside wrapper for precise 20px gap) -->
+      {% if section.settings.heading != blank %}
+        <div class="tisso-header">
+          {{ section.settings.heading }}
+        </div>
+      {% endif %}
+
+      <div class="v1-mobile-grid">
+        {% for i in (1..6) %}
+          {% capture prod_id %}prod_{{ i }}{% endcapture %}
+          {% capture mob_img_id %}mob_img_{{ i }}{% endcapture %}
+          
+          {% assign product = all_products[section.settings[prod_id]] %}
+          {% assign custom_img = section.settings[mob_img_id] %}
+          
+          <div class="v1-mobile-item">
+            {% if product != blank %}
+              {% if custom_img != blank %}
+                <img src="{{ custom_img | image_url: width: 400 }}" alt="{{ product.title }}">
+              {% else %}
+                <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}">
+              {% endif %}
+              
+              <button class="v1-mobile-plus js-open-popup" 
+                      data-product-json="{{ product | json | escape }}">
+                <span class="plus-icon-inner"></span>
+              </button>
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag }}
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </section>
 
@@ -25,34 +94,186 @@
 {% render 'product-popup-modal' %}
 
 <style>
-  /* 1. RESET & GLOBAL */
+  /* GLOBAL RESET */
   .custom-v1-wrapper { padding: 80px 0; background: #fff; }
-  .v1-title { font-family: 'Lustria', serif; font-weight: 400; line-height: 1.2; margin: 0; color: #000; }
-  .v1-title-container { width: 100%; margin: 0 auto 40px auto; padding: 0 20px; box-sizing: border-box; }
+  .custom-v1-wrapper img { display: block; width: 100%; height: 100%; object-fit: cover; }
   
-  /* HIDE EVERYTHING BY DEFAULT */
+  /* Shared Title Base */
+  .v1-title { 
+    font-family: 'Lustria', serif; 
+    font-weight: 400; 
+    line-height: 120%; 
+    margin: 0; 
+    color: #000; 
+  }
+
+  /* UTILITIES */
   .v2-only, .desktop-only, .mobile-only { display: none !important; }
 
-  /* 2. MOBILE (Phones) */
-  @media (max-width: 768px) {
-    .mobile-only { display: block !important; }
-    .custom-v1-wrapper { padding: 40px 0; }
-    .v1-title-container { max-width: 342px; }
-    .v1-title { font-size: 24px; max-width: 248px; text-align: left; }
-  }
-
-  /* 3. STANDARD DESKTOP (Laptops/Monitors) */
+  /* =========================================
+     DESKTOP STYLES (Min 769px - Max 1999px)
+     Matches Figma 1339px Layout
+     ========================================= */
   @media (min-width: 769px) and (max-width: 1999px) {
     .desktop-only { display: block !important; }
-    .v1-title-container { max-width: 1339px; }
-    .v1-title { font-size: 36px; max-width: 372px; text-align: left; }
+    
+    /* 1. Container & Title */
+    .v1-title-container.desktop-header {
+      width: 1339px; /* Pic 7 */
+      margin: 0 auto 30px auto; /* Gap 30px from Pic 2 */
+      text-align: left;
+      padding: 0; /* Remove padding to align exactly with grid */
+    }
+
+    .v1-title {
+      font-size: 36px; /* Pic 4 */
+    }
+
+    /* 2. Grid Layout - Pic 6 & 7 */
+    .desktop-v1-grid {
+      display: grid;
+      width: 1339px;
+      margin: 0 auto;
+      grid-template-columns: repeat(3, 433px); /* 3 cols of 433px */
+      gap: 20px; /* Pic 6 */
+      justify-content: center;
+    }
+
+    /* 3. Item Card */
+    .desktop-v1-item {
+      position: relative;
+      width: 433px;
+      height: 444px;
+      border: 1.5px solid #000000; /* Pic 9 */
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    /* 4. Hotspot Button  */
+    .desktop-v1-hotspot {
+      position: absolute;
+      /* Visual placement - kept consistent Top Right as per typical UX */
+      top: 15px; 
+      right: 15px;
+      
+      width: 22px;  /* Pic 11 */
+      height: 22px; /* Pic 11 */
+      background: rgba(248, 248, 248, 0.9); /* Pic 11 */
+      border: 1.5px solid rgba(0, 0, 0, 1);  /* Pic 11 */
+      border-radius: 50%;
+      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      z-index: 2;
+      transition: transform 0.2s ease;
+    }
+
+    .desktop-v1-hotspot:hover {
+      transform: scale(1.1);
+    }
+
+    /* Desktop Plus Icon  */
+    .desktop-plus-icon {
+      position: relative;
+      width: 8.46px;
+      height: 8.46px;
+      display: block;
+    }
+
+    .desktop-plus-icon::before,
+    .desktop-plus-icon::after {
+      content: '';
+      position: absolute;
+      background-color: #000; 
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Horizontal Line */
+    .desktop-plus-icon::before { width: 8.46px; height: 1.5px; } /* 1.5px thickness implied by border style */
+    /* Vertical Line */
+    .desktop-plus-icon::after { width: 1.5px; height: 8.46px; }
   }
 
-  /* 4. ULTRA-WIDE 4K (V2 Layout) */
+  /* =========================================
+     MOBILE STYLES (Max 768px)
+    
+     ========================================= */
+  @media (max-width: 768px) {
+    .mobile-only { display: block !important; }
+    .desktop-header { display: none !important; } /* Hide desktop title */
+    .custom-v1-wrapper { padding: 40px 0; }
+
+    .tisso-mobile-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 342px;
+      margin: 0 auto;
+      gap: 20px;
+    }
+
+    .tisso-header {
+      font-family: 'Lustria', serif;
+      font-size: 24px;
+      line-height: 120%;
+      text-align: center;
+      color: #000;
+    }
+
+    .v1-mobile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 169px);
+      width: 342px;
+      gap: 4px;
+      justify-content: center;
+    }
+    
+    .v1-mobile-item {
+      position: relative;
+      width: 169px;      
+      height: 186.42px;  
+      border: 1px solid #000;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    
+    /* Mobile Plus Button */
+    .v1-mobile-plus {
+      position: absolute;
+      top: 18px; 
+      left: 101.29px; 
+      width: 15.71px; 
+      height: 15.71px;
+      background: rgba(248, 248, 248, 0.9);
+      border: 1px solid #000;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0; cursor: pointer; z-index: 2;
+    }
+
+    .plus-icon-inner {
+      position: relative;
+      width: 6.04px;
+      height: 6.04px;
+    }
+    .plus-icon-inner::before, .plus-icon-inner::after {
+      content: ''; position: absolute; background-color: #000;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+    .plus-icon-inner::before { width: 6.04px; height: 1px; }
+    .plus-icon-inner::after { width: 1px; height: 6.04px; }
+  }
+
+  /* =========================================
+     ULTRA-WIDE 4K (Min 2000px)
+     ========================================= */
   @media (min-width: 2000px) {
     .v2-only { display: block !important; }
-    .v1-title-container { max-width: 2844.3px; } 
-    .v1-title { font-size: 48px; max-width: 500px; text-align: left; } 
+    .desktop-header { display: none !important; }
   }
 </style>
 

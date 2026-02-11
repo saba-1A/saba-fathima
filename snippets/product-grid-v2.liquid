@@ -1,17 +1,38 @@
 <div class="v2-desktop-grid">
   {% for i in (1..6) %}
-    {% capture img_id %}img_{{ i }}{% endcapture %}
+    {% comment %} --- 1. CAPTURE CORRECT SETTING NAMES --- {% endcomment %}
+    {% capture img_key %}wide_img_{{ i }}{% endcapture %}
+    {% capture prod_key %}prod_{{ i }}{% endcapture %}
+
+    {% assign current_image = section.settings[img_key] %}
+    {% assign current_product = section.settings[prod_key] %}
+
     <div class="v2-grid-item">
-      {% if section.settings[img_id] != blank %}
-        <img src="{{ section.settings[img_id] | image_url: width: 2000 }}" alt="Product {{ i }}">
-        <div class="v2-hotspot">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/>
-            <path d="M12 8V16M8 12H16" stroke="white" stroke-width="2"/>
-          </svg>
-        </div>
+      {% if current_image != blank %}
+        
+        <!-- The 4K Image -->
+        <img 
+          src="{{ current_image | image_url: width: 2000 }}" 
+          alt="{{ current_product.title | default: 'Product Image' }}"
+          loading="lazy"
+        >
+
+        <!-- 
+           The Hotspot 
+           Added 'js-open-popup' and 'data-product-json' so the modal works 
+        -->
+        {% if current_product != blank %}
+          <div class="v2-hotspot js-open-popup" data-product-json='{{ current_product | json | escape }}'>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/>
+              <path d="M12 8V16M8 12H16" stroke="white" stroke-width="2"/>
+            </svg>
+          </div>
+        {% endif %}
+
       {% else %}
-        {{ 'image' | placeholder_svg_tag }}
+        <!-- Placeholder if no image selected -->
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
       {% endif %}
     </div>
   {% endfor %}
@@ -24,20 +45,29 @@
     width: 100%;
     max-width: 2844.3px; 
     margin: 0 auto;
-    gap: 30px; /* Adjusted gap for larger scale */
+    gap: 30px; 
   }
 
   .v2-grid-item {
     position: relative;
     width: 919.78px;   
-    height: 943.14px;  
+    height: 943.14px;
     overflow: hidden;
+    background: #f4f4f4; /* Light grey background for placeholders */
   }
 
   .v2-grid-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
+  }
+
+  /* Placeholder Styling */
+  .v2-grid-item svg.placeholder-svg {
+    width: 100%;
+    height: 100%;
+    fill: #ccc;
   }
 
   .v2-hotspot {
@@ -45,10 +75,19 @@
     top: 20%; 
     right: 20%;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    z-index: 2;
+    background: rgba(0,0,0,0.2); /* Slight contrast backing */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background 0.3s;
   }
 
   .v2-hotspot:hover {
-    transform: scale(1.2);
+    background: rgba(0,0,0,0.6);
+    transform: translate(-50%, -50%) scale(1.2);
   }
 </style>
