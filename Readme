@@ -1,5 +1,7 @@
 My Shopify Development Process & File Structure
+
 Project Architecture
+
 To keep the code clean and scalable, I used a modular approach. Instead of putting all the code into one giant file, I created "Controller" files that call specific "Snippets" based on the version or device being used.
 
 1. Custom Banner Section
@@ -28,7 +30,9 @@ Vanilla JavaScript: All interactive elements, including button animations and th
 
 Automatic "Gift" Logic: I implemented a custom script so that if a user adds a product with the "Medium" size and "Black" color to their cart, the "Soft Winter Jacket" is automatically added as well.
 
-Functional Checkout: The Add-to-Cart system is fully functional, and the checkout button successfully directs users to the final payment page.
+After the user makes their selection and clicks "Add to Cart," the screen takes a brief moment to load.
+
+Once loaded, you can scroll down to view the confirmed selection and the automatically added gift then click on checkout button and proceed 
 
 Summary
 Even though I was new to Shopify, I learned a lot during this process. It was a fun challenge and definitely worth my time—thank you for giving me the opportunity to try this out!
@@ -60,3 +64,53 @@ PC v1 product code : snippets/product-grid-v1.liquid
 PC v2 Product Code :snippets/product-grid-v2.liquid 
 
 live link : https://saba-fathima-48-teststore.myshopify.com
+
+
+Interactive Elements:
+
+When the "Choose Gift" button is clicked, the background switches from yellow to black, and the text changes from black to white.
+When the "Shop Now" button is clicked, the black background turns yellow, and the text changes from white to black.
+
+UI Interaction Video:
+![ui interaction](./ui%20interaction.mp4)
+
+Automatic "Gift" Logic:
+
+![Automatic Gift](./ui%20Automatic.mp4)
+
+Implemented : if a user selects a product in "Medium" size and "Black" color, the "Soft Winter Jacket" is automatically added to their cart.
+After the user makes their selection and clicks "Add to Cart," the screen takes a brief moment to load.
+Once loaded, you can scroll down to view the confirmed selection and the automatically added gift then click on checkout button and proceed 
+The user flow follows these steps: View Product → Select Color → Select Size → Confirm Selection → Automatic Gift Addition → Checkout button click.
+
+
+Website Layouts:
+
+**Normal PC Mode:**
+![Normal PC](./normal%20pc.jpeg)
+
+**1440x2000 Mode:**
+![PC 1440x2000](./1440x2000.jpeg)
+
+**3840x2160 Mode:**
+![PC 3840x2160](./3840x2160.jpeg)
+
+**Mobile Mode (375.44x1200):**
+![Mobile View](./375.44x1200.jpeg)
+
+Cart & Selection Process
+
+1. **Select Colour:**
+![Select Colour](./select%20colour.png)
+
+2. **Select Size:**
+![Select Size](./select%20size.png)
+
+3. **User Selection Made:**
+![Selected Choice](./selected%20choice.png)
+
+4. **Automatic Gift Logic (Medium/Black):**
+![Automatic Choice](./automatic%20choice%20selected%20due%20to%20black%20....jpeg)
+
+5. **Final Checkout:**
+![Checkout](./checkout.png)
