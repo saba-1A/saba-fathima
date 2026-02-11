@@ -11,36 +11,6 @@
   "type": "header",
   "name": "Header",
   "sections": {
-    "header_announcements_9jGBFp": {
-      "type": "header-announcements",
-      "blocks": {
-        "announcement_BxgCk9": {
-          "type": "_announcement",
-          "settings": {
-            "text": "Welcome to our store",
-            "link": "",
-            "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "weight": "",
-            "letter_spacing": "normal",
-            "case": "none"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "announcement_BxgCk9"
-      ],
-      "name": "t:names.announcement_bar",
-      "settings": {
-        "speed": 5,
-        "section_width": "page-width",
-        "color_scheme": "scheme-1",
-        "divider_width": 1,
-        "padding-block-start": 15,
-        "padding-block-end": 15
-      }
-    },
     "header_section": {
       "type": "header",
       "blocks": {
@@ -79,6 +49,7 @@
           "blocks": {}
         }
       },
+      "disabled": true,
       "settings": {
         "logo_position": "left",
         "menu_position": "left",
@@ -109,10 +80,60 @@
         "enable_transparent_header_collection": false,
         "collection_color_scheme": "default"
       }
+    },
+    "custom_banner_NfdYwd": {
+      "type": "custom-banner",
+      "name": "Custom Gift Banner",
+      "settings": {
+        "top_bar_bg": "#F5F5F5",
+        "hero_bg_image": "shopify://shop_images/Frame_18.png",
+        "hero_bg_image_2": "shopify://shop_images/Frame_21.png",
+        "hero_title": "The Gift Guide",
+        "hero_subtitle": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
+        "hero_btn_text": "SHOP NOW",
+        "hero_btn_link": "",
+        "footer_text": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL",
+        "hero_bg_image_4k": "shopify://shop_images/Frame_23.png",
+        "hero_bg_image_4k_right": "shopify://shop_images/Frame_24.png",
+        "hero_bg_4k_secondary": "#F5F5F5",
+        "hero_title_4k": "The Gift Guide",
+        "hero_subtitle_4k": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
+        "hero_btn_text_4k": "SHOP NOW",
+        "brand_text": "TISSO VISON",
+        "top_center_text": "Find the ideal gift for your loved ones.",
+        "top_btn_text": "CHOOSE GIFT",
+        "top_btn_color": "#FFEB3B",
+        "top_btn_link": "",
+        "hero_bg_image_mobile": "shopify://shop_images/Frame_22.png",
+        "hero_title_mobile": "The Gift Guide",
+        "hero_subtitle_mobile": "Discover Joy: Your Ultimate Holiday Gift Destination.",
+        "hero_btn_text_mobile": "SHOP NOW",
+        "hero_btn_link_mobile": ""
+      }
+    },
+    "custom_products_aztyV7": {
+      "type": "custom-products",
+      "name": "Custom Product V1",
+      "settings": {
+        "heading": "Tisso vision in the wild",
+        "prod_1": "black-leather-bag",
+        "wide_img_1": "shopify://shop_images/image_822.png",
+        "prod_2": "blue-silk-tuxedo",
+        "wide_img_2": "shopify://shop_images/image_823.png",
+        "prod_3": "chequered-red-shirt",
+        "wide_img_3": "shopify://shop_images/image_824.png",
+        "prod_4": "classic-leather-jacket",
+        "wide_img_4": "shopify://shop_images/image_825.png",
+        "prod_5": "classic-varsity-top",
+        "wide_img_5": "shopify://shop_images/image_826.png",
+        "prod_6": "dark-denim-top",
+        "wide_img_6": "shopify://shop_images/image_827.png"
+      }
     }
   },
   "order": [
-    "header_announcements_9jGBFp",
-    "header_section"
+    "header_section",
+    "custom_banner_NfdYwd",
+    "custom_products_aztyV7"
   ]
 }
