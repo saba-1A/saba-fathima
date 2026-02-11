@@ -112,7 +112,7 @@
 
   /* =========================================
      DESKTOP STYLES (Min 769px - Max 1999px)
-     Matches Figma 1339px Layout
+     
      ========================================= */
   @media (min-width: 769px) and (max-width: 1999px) {
     .desktop-only { display: block !important; }
@@ -126,16 +126,16 @@
     }
 
     .v1-title {
-      font-size: 36px; /* Pic 4 */
+      font-size: 36px; 
     }
 
-    /* 2. Grid Layout - Pic 6 & 7 */
+    /* 2. Grid Layout
     .desktop-v1-grid {
       display: grid;
       width: 1339px;
       margin: 0 auto;
       grid-template-columns: repeat(3, 433px); /* 3 cols of 433px */
-      gap: 20px; /* Pic 6 */
+      gap: 20px; 
       justify-content: center;
     }
 
@@ -144,7 +144,7 @@
       position: relative;
       width: 433px;
       height: 444px;
-      border: 1.5px solid #000000; /* Pic 9 */
+      border: 1.5px solid #000000; 
       box-sizing: border-box;
       overflow: hidden;
     }
@@ -268,12 +268,34 @@
     .plus-icon-inner::after { width: 1px; height: 6.04px; }
   }
 
-  /* =========================================
-     ULTRA-WIDE 4K (Min 2000px)
+/* =========================================
+     ULTRA-WIDE 4K (Min 2000px) - V2 GRID
+     
      ========================================= */
   @media (min-width: 2000px) {
     .v2-only { display: block !important; }
-    .desktop-header { display: none !important; }
+    .desktop-only, .mobile-only, .desktop-header { display: none !important; }
+    
+    /* V2 Container  */
+    .v2-desktop-grid {
+      display: grid;
+      width: 100%;
+      max-width: 2844.3px; /* Exact Figma Width */
+      margin: 0 auto;
+      /* Calculated Gap: (2844.3 - (919.78*3)) / 2 */
+      gap: 42.48px; 
+      grid-template-columns: repeat(3, 919.78px);
+      justify-content: center;
+    }
+
+    /* V2 Item - Matches Pic 3 & 4 Dimensions */
+    .v2-grid-item {
+      position: relative;
+      width: 919.78px;   
+      height: 943.14px;
+      overflow: hidden;
+      background: #f4f4f4;
+    }
   }
 </style>
 
